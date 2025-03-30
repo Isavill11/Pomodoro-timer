@@ -1,15 +1,21 @@
 
 
-const bells= new Audio('./sounds/bell.wav');
+const bells = new Audio('./sounds/bell.wav');
 const startButton = document.querySelector('.btn-start');
 const session = document.querySelector('.minutes');
 let myInterval;
 let state = true;
 
+const playHarp = () => {
+    const harpSound = new Audio('./sounds/harp.wav');
+    harpSound.play();
+};
+
+
 
 const appTimer = () => {
     const sessionAmount = Number.parseInt(session.textContent)
-
+    
     if(state) {
         state = false;
         let totalSeconds = sessionAmount * 60;
@@ -35,14 +41,16 @@ const appTimer = () => {
                 clearInterval(myInterval);
             }
         }
+
         myInterval = setInterval(updateSeconds, 1000);
     } else{
         alert('Session has already started.')
     }
-    
-    startBtn.addEventListener('click', appTimer);
+};
 
-}
+
+startButton.addEventListener('click', playHarp)
+startButton.addEventListener('click', appTimer);
 
 
 
